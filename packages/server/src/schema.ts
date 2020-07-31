@@ -1,6 +1,6 @@
 const typeDefs = `
   type User {
-    id: ID
+    id: ID!
     name: String
     email: String
     password: String
@@ -11,6 +11,11 @@ const typeDefs = `
     email: String!
     password: String!
   }
+  input UserUpdate {
+    name: String
+    email: String
+    password: String
+  }
 
   type Query {
     getUser(id: ID!): User
@@ -18,6 +23,7 @@ const typeDefs = `
   }
   type Mutation {
     createUser(input: UserInput): User
+    updateUser(id: ID!, input: UserUpdate): User
   }
 `
 export default typeDefs

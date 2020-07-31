@@ -11,7 +11,7 @@ const resolvers = {
     }
   },
   Mutation: {
-    async createUser (_: void, { input }: {input:any}): Promise<any> {
+    async createUser (_: void, { input }: { input:any }): Promise<any> {
       const returnData = await connection('tb_user').insert({
         name: input.name,
         email: input.email,
@@ -20,6 +20,26 @@ const resolvers = {
 
       const id = returnData[0]
       return await connection('tb_user').where({ id }).first()
+    },
+    async updateUser (_: void, { id, input }: { id: number, input:any }): Promise<any> {
+      const user = await connection('tb_user').where({ id }).first()
+
+      if (!user) {
+        const error = new Error()
+        return console.error(error)
+      }
+
+      try {
+        await connection('tb_user').where({ id }).update({
+          name: input.name,
+          email: input.email,
+          password: input.password
+        })
+
+        return await connection('tb_user').where({ id }).first()
+      } catch (error) {
+        return error
+      }
     }
   }
 }
