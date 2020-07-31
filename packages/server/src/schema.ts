@@ -6,7 +6,6 @@ const typeDefs = `
     password: String
   }
   input UserInput {
-    id: ID
     name: String!
     email: String!
     password: String!
@@ -24,6 +23,7 @@ const typeDefs = `
   type Mutation {
     createUser(input: UserInput): User
     updateUser(id: ID!, input: UserUpdate): User
+    deleteUser(id: ID!): User
   }
 `
 export default typeDefs

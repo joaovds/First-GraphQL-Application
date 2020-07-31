@@ -40,6 +40,20 @@ const resolvers = {
       } catch (error) {
         return error
       }
+    },
+    async deleteUser (_: void, { id }: { id: number}): Promise<any> {
+      const user = await connection('tb_user').where({ id }).first()
+
+      if (!user) {
+        const error = new Error()
+        return console.error(error)
+      }
+
+      try {
+        return await connection('tb_user').where({ id }).del()
+      } catch (error) {
+        return error
+      }
     }
   }
 }
