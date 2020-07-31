@@ -1,15 +1,6 @@
 import { GraphQLServer } from 'graphql-yoga'
-
-const typeDefs = `
-  type Query {
-    info: String!
-  }
-`
-const resolvers = {
-  Query: {
-    info: () => `This is the API of a Hackernews Clone`
-  }
-}
+import resolvers from './resolvers'
+import typeDefs from './schema'
 
 const server = new GraphQLServer({
   typeDefs,
