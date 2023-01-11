@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "graphql-yoga": "^1.18.3",
-    "knex": "^0.21.2",
+    "knex": "^2.4.0",
     "sqlite3": "^5.0.0"
   }
 }
